@@ -47,6 +47,7 @@ function appMenu(){
         ]).then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
             console.log(manager);
+            teamMembers.push(manager);
             chooseType();
         });
         
@@ -78,6 +79,7 @@ function appMenu(){
             }
             else{
                 console.log("Create file");
+                console.log(teamMembers);
             }
         });
     }
@@ -111,6 +113,7 @@ function appMenu(){
         ]).then(answers => {
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerOfficeNumber);
             console.log(engineer);
+            teamMembers.push(engineer);
             chooseType();
         });
     }
@@ -144,6 +147,7 @@ function appMenu(){
         ]).then(answers => {
             const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internOfficeNumber);
             console.log(intern);
+            teamMembers.push(intern);
             chooseType();
         });
     }
