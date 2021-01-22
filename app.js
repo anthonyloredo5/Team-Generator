@@ -4,6 +4,8 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const art = require("ascii-art");
+
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -13,6 +15,8 @@ const render = require("./lib/htmlRenderer");
 let teamMembers = [];
 
 function appMenu(){
+    //ART ATTEMPT
+    //art.font("Team Generator", "bold"[ "close"]);
     function createManager(){
         console.log("Please build your team");
         inquirer.prompt([
@@ -43,9 +47,106 @@ function appMenu(){
         ]).then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
             console.log(manager);
+            chooseType();
         });
+        
     }
     createManager();
+
+    function chooseType(){
+        inquirer.prompt([
+            {
+                type:"list",
+                name:"employeeType",
+                message:"Which type of team member would you like to add?",
+                choices:[
+                    'Engineer',
+                    'Intern',
+                    'I dont want to add anymore employees.'
+                ]
+                //validate user input here
+            },
+        ]).then(answers => {
+            //const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+            if(answers.employeeType == "Engineer"){
+                console.log("Create Engineer");
+                createEngineer(); 
+            }
+            else if(answers.employeeType == "Intern"){
+                console.log("Create intern");
+                createIntern();
+            }
+            else{
+                console.log("Create file");
+            }
+        });
+    }
+
+    function createEngineer(){
+        inquirer.prompt([
+            {
+                type:"input",
+                name:"engineerName",
+                message:"What is your engineer's name?",
+                //validate user input here
+            },
+            {
+                type:"input",
+                name:"engineerId",
+                message:"What is your engineer's id?",
+                //validate user input here
+            },
+            {
+                type:"input",
+                name:"engineerEmail",
+                message:"What is your engineer's email?",
+                //validate user input here
+            },
+            {
+                type:"input",
+                name:"engineerOfficeNumber",
+                message:"What is your engineer's office number?",
+                //validate user input here
+            },
+        ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerOfficeNumber);
+            console.log(engineer);
+            chooseType();
+        });
+    }
+
+    function createIntern(){
+        inquirer.prompt([
+            {
+                type:"input",
+                name:"internName",
+                message:"What is your intern's name?",
+                //validate user input here
+            },
+            {
+                type:"input",
+                name:"internId",
+                message:"What is your intern's id?",
+                //validate user input here
+            },
+            {
+                type:"input",
+                name:"internEmail",
+                message:"What is your intern's email?",
+                //validate user input here
+            },
+            {
+                type:"input",
+                name:"internOfficeNumber",
+                message:"What is your intern's office number?",
+                //validate user input here
+            },
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internOfficeNumber);
+            console.log(intern);
+            chooseType();
+        });
+    }
 }
 appMenu();
 
