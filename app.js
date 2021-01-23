@@ -187,7 +187,7 @@ function appMenu() {
                 name: "internEmail",
                 message: "What is your intern's email?",
                 validate: function (internEmail) {
-                    if (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(engineerEmail)) {
+                    if (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(internEmail)) {
                         return true;
                     } else {
                         return `Please enter a valid email`
